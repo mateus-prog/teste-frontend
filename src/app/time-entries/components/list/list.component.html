@@ -1,0 +1,95 @@
+<div class="content-wrapper">
+    <breadcrumb [action]="breadcrumbAction" [module]="breadcrumbModule">
+    </breadcrumb>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row space-search">
+                <div *ngIf="administrator === '1'" class="col-md-7">
+                    <div class="input-icon">
+                        <div><i class="fas fa-user"></i></div>
+                        <select [(ngModel)]="user_id" #ctrl="ngModel" class="form-control input">
+                            <option value="0">Todos</option>
+                            <option *ngFor="let user of users;"
+                                value="{{user.id}}">{{user.first_name}} {{user.last_name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-icon">
+                        <!--<mat-form-field appearance="fill">-->
+                            <div>
+                                <mat-datepicker-toggle matSuffix [for]="picker" class="form-control-sm background-button"></mat-datepicker-toggle>
+                            </div>
+                            <mat-date-range-input [rangePicker]="picker" class="form-control form-control-sm background-input">
+                                <input [(ngModel)]="date_start" #ctrl="ngModel" matStartDate placeholder="Período">
+                                <input [(ngModel)]="date_end" #ctrl="ngModel" matEndDate placeholder="">
+                            </mat-date-range-input>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                            
+                        <!--</mat-form-field>-->
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" (click)="filtrar()">
+                        <i class="fas fa-search"></i> Filtrar
+                    </button>
+                </div>
+            </div>
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                <section class="col-lg-12 connectedSortable">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%; text-align: center;">ID</th>
+                                        <th style="width: 30%;">Funcionário</th>
+                                        <th style="width: 5%; text-align: center;">Idade</th>
+                                        <th style="width: 20%;">Cargo</th>
+                                        <th style="width: 25%;">Gestor</th>
+                                        <th style="width: 15%; text-align: center;">Registro</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let entry of resultFilter() | paginate: { itemsPerPage: 10, currentPage: paginaAtual }; let i = index">
+                                        <td style="text-align: center;">{{entry.id}}</td>
+                                        <td>{{entry.employee}}</td>
+                                        <td style="text-align: center;">{{entry.age}}</td>
+                                        <td>{{entry.position}}</td>
+                                        <td>{{entry.manager}}</td>
+                                        <td>{{entry.time}}</td>
+                                    </tr>
+                                    <tr *ngIf="!entries && !loaded">
+                                        <td colspan="6" class="text-center">
+                                            <span class="spinner-border spinner-border-lg align-center"></span>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="entries.length === 0 && loaded">
+                                        <td colspan="6" class="text-center">
+                                            <span class="align-center">Nenhum ponto encontrado.</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <nav class="nav-pagination">
+                        <pagination-controls class="my-pagination" previousLabel="Anterior" nextLabel="Próximo"
+                            (pageChange)="paginaAtual = $event">
+                        </pagination-controls>
+                    </nav>
+                    <!-- /.card -->
+                </section>
+                <!-- right col -->
+            </div>
+        </div>
+    </section>
+</div>
