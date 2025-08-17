@@ -184,7 +184,6 @@ export class AddEditComponent implements OnInit {
         .pipe(first())
         .subscribe(
           data => {
-            console.log(data);
             this.form.patchValue({
               address: data.logradouro,
               city: data.localidade,
