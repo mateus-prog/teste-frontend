@@ -1,0 +1,38 @@
+<div class="modal fade" [id]="id" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div *ngIf="inUse" class="modal-dialog" role="document">
+        <div class="modal-content bg-danger">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">
+                    <i class="icon fas fa-ban"></i> Alerta!
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6 [innerHTML]="message"></h6>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!inUse" class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div *ngIf="title!=''" class="modal-header">
+                <h6 class="modal-title" id="modalLabel" >{{title}}?</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div *ngIf="message!=''" class="modal-body">
+                <div id="modalLabelMessage" [innerHTML]="message"></div>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="buttonCancel != ''" (click)="cancelModal()" class="btn btn-sm btn-secondary" data-dismiss="modal">
+                    {{buttonCancel}}
+                </button>
+                <button (click)="confirmModal()" class="btn btn-sm" [ngClass]="{ 'btn-primary': buttonCancel == '', 'btn-danger': buttonCancel != '' }" data-dismiss="modal">
+                    {{buttonConfirm}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

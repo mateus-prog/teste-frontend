@@ -1,0 +1,10 @@
+<div *ngIf="alerts && alerts.length>0">
+
+  <div *ngFor="let alert of alerts" class="{{cssClass(alert)}}">
+    <!--<a class="close" (click)="removeAlert(alert)">&times;</a>-->
+    <span [innerHTML]="alert.message"></span>
+    <button type="button" (click)="removeAlert(alert)" class="close" data-dismiss="alert" aria-label="Fechar">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
