@@ -6,7 +6,10 @@ import { AuthenticatedUserGuard } from '../service/authentication/authenticated-
 import { LoginComponent } from 'src/app/login/components/login';
 import { ChangePasswordComponent } from 'src/app/login/components/change-password';
 
+const usersModule = () => import('src/app/users/users.module').then((x) => x.UsersModule);
+
 const routes: Routes = [
+  { path: 'user', loadChildren: usersModule, canActivate: [AuthenticatedUserGuard], },
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login/changePassword', component: ChangePasswordComponent, canActivate: [AuthenticatedUserGuard] },
