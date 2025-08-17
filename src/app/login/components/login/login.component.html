@@ -1,0 +1,36 @@
+<div class="wrapper fadeInDown">
+    <!-- Icon -->
+    <!--<div class="fadeIn first">
+        <img src="assets/logo2.webp" width="100" alt=""/>
+    </div>-->
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Login Form -->
+        <p>Entre com seu e-mail e senha para ter acesso</p>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <input type="text" id="email" class="fadeIn second" formControlName="email" placeholder="E-mail"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                <div *ngIf="f.email.errors.email"><i class="fas fa-times"></i> E-mail inválido.</div>
+            </div>
+            <input type="{{typePassword}}" id="password" class="fadeIn third" formControlName="password" placeholder="Senha"
+            [ngClass]="{ 'is-invalid': submitted && (f.password.errors || messageError != '') }">
+            <i id="buttonPassword" class="fadeIn third far {{iconPassword}}" (click)="showPassword()"></i>
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                <div *ngIf="f.password.errors.minlength"><i class="fas fa-times"></i> Mínimo de 6 caracteres.</div>
+            </div>
+            <div *ngIf="submitted && messageError != ''" class="invalid-feedback">
+                <i class="fas fa-times"></i> {{messageError}}
+            </div>
+            <input type="submit" class="fadeIn fourth" value="Entrar">
+        </form>
+
+        <!-- Remind Passowrd -->
+        <!--<div id="formFooter">
+            <a class="underlineHover" routerLink="/login/forgotPassword" href="#">Esqueceu sua senha?</a>
+        </div>-->
+    </div>
+</div>
