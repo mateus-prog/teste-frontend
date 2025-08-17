@@ -1,0 +1,207 @@
+<div class="content-wrapper">
+    <breadcrumb [action]="breadcrumbAction" [module]="breadcrumbModule">
+    </breadcrumb>
+    <!-- /.content-header -->
+    
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-secondary">
+                        <!-- form start -->
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="card-body">
+                                <h5>Dados</h5>
+                                <div class="form-group space-top">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="first_name">Nome</label>
+                                            <input type="input" formControlName="first_name" class="form-control" autocomplete="off" maxlength="20" placeholder="Nome"    
+                                            [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
+                                            <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                                                <div *ngIf="f.first_name.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.first_name.errors.minlength"><i class="fas fa-times"></i> Mínimo de 3 caracteres.</div>
+                                                <div *ngIf="f.first_name.errors.maxlength"><i class="fas fa-times"></i> Máxmo de 20 caracteres.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="last_name">Sobrenome</label>
+                                            <input type="input" formControlName="last_name" class="form-control" autocomplete="off" maxlength="50" placeholder="Sobrenome"    
+                                            [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+                                            <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                                                <div *ngIf="f.last_name.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.last_name.errors.minlength"><i class="fas fa-times"></i> Mínimo de 3 caracteres.</div>
+                                                <div *ngIf="f.last_name.errors.maxlength"><i class="fas fa-times"></i> Máxmo de 50 caracteres.</div>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="email">Login</label>
+                                            <input type="input" formControlName="email" class="form-control" autocomplete="off" maxlength="60" placeholder="E-mail"      
+                                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                                <div *ngIf="f.email.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.email.errors.email"><i class="fas fa-times"></i> E-mail inválido.</div>
+                                            </div>  
+                                        </div>
+                                    </div>    
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="cpf">CPF</label>
+                                            <input type="input" formControlName="cpf" class="form-control" autocomplete="off" maxlength="14" placeholder="CPF"
+                                            mask="000.000.000-00" appCpfCnpjValidate
+                                            [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }" />
+                                            <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
+                                                <div *ngIf="f.cpf.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.cpf.errors.digit || f.cpf.errors.equalDigits"><i class="fas fa-times"></i> CPF inválido</div>
+                                                <div *ngIf="f.cpf.errors.minlength"><i class="fas fa-times"></i> Mínimo de 14 caracteres.</div>
+                                            </div>  
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="date_of_birth">Data Nascimento</label>
+                                            <input type="input" formControlName="date_of_birth" class="form-control" autocomplete="off" maxlength="10" placeholder="DD/MM/AAAA"
+                                            mask="00/00/0000" appDateValidate  
+                                            [ngClass]="{ 'is-invalid': submitted && f.date_of_birth.errors }" />
+                                            <div *ngIf="submitted && f.date_of_birth.errors" class="invalid-feedback">
+                                                <div *ngIf="f.date_of_birth.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.date_of_birth.errors.invalidFormat || f.date_of_birth.errors.invalidDate"><i class="fas fa-times"></i> Data inválido</div>
+                                                <div *ngIf="f.date_of_birth.errors.underage"><i class="fas fa-times"></i> Idade mínima exigida é de 18 anos.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="position">Cargo</label>
+                                            <input type="input" formControlName="position" class="form-control" autocomplete="off" maxlength="50" placeholder="Cargo"    
+                                            [ngClass]="{ 'is-invalid': submitted && f.position.errors }" />
+                                            <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
+                                                <div *ngIf="f.position.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.position.errors.minlength"><i class="fas fa-times"></i> Mínimo de 3 caracteres.</div>
+                                                <div *ngIf="f.position.errors.maxlength"><i class="fas fa-times"></i> Máxmo de 50 caracteres.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="administrator">Administrador</label>
+                                            <select formControlName="administrator" class="form-control" autocomplete="off" placeholder="Administrador"
+                                            [ngClass]="{ 'is-invalid': submitted && f.administrator.errors }">
+                                                <option value='1'>Sim</option>
+                                                <option value='0'>Não</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.administrator.errors" class="invalid-feedback">
+                                                <div *ngIf="f.administrator.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                </div>
+                                <h5>Endereço</h5>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="cep">CEP</label>
+                                            <input type="input" formControlName="cep" class="form-control" autocomplete="off" maxlength="9" placeholder="CEP"
+                                            mask="00000-000" 
+                                            (change)="changeCep($event)" 
+                                            [ngClass]="{ 'is-invalid': submitted && f.cep.errors }" />
+                                            <div *ngIf="submitted && f.cep.errors" class="invalid-feedback">
+                                                <div *ngIf="f.cep.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.cep.errors.minlength"><i class="fas fa-times"></i> Mínimo de 9 caracteres.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="address">Endereço</label>
+                                            <input type="input" formControlName="address" class="form-control" autocomplete="off" maxlength="80" placeholder="Endereço"   
+                                            [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+                                            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                                <div *ngIf="f.address.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.address.errors.maxlength"><i class="fas fa-times"></i> Máxmo de 80 caracteres.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="number">Número</label>
+                                            <input type="input" formControlName="number" class="form-control" autocomplete="off" maxlength="10" placeholder="Número"     
+                                            [ngClass]="{ 'is-invalid': submitted && f.number.errors }" />
+                                            <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
+                                                <div *ngIf="f.number.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.number.errors.maxlength"><i class="fas fa-times"></i> Máxmo de 10 caracteres.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="complement">Complemento</label>
+                                            <input type="input" formControlName="complement" class="form-control" autocomplete="off" maxlength="20" placeholder="Complemento"
+                                            [ngClass]="{ 'is-invalid': submitted && f.complement.errors }" />
+                                            <div *ngIf="submitted && f.complement.errors" class="invalid-feedback">
+                                                <div *ngIf="f.complement.errors.maxlength"><i class="fas fa-times"></i> Máxmo de 20 caracteres.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="state">Estado</label>
+                                            <select formControlName="state" class="form-control" autocomplete="off" placeholder="Estado"
+                                            [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                                                <option value="">Selecione uma opção</option>
+                                                <option *ngFor="let estado of estados" [value]="estado.sigla">
+                                                    {{ estado.sigla }} - {{ estado.nome }}
+                                                </option>
+                                            </select>
+                                            <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                                <div *ngIf="f.state.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.state.errors.maxlength"><i class="fas fa-times"></i> Máxmo de 2 caracteres.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="city">Cidade</label>
+                                            <input type="input" formControlName="city" class="form-control" autocomplete="off" maxlength="50" placeholder="Cidade"    
+                                            [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+                                            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                                <div *ngIf="f.city.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.city.errors.maxlength"><i class="fas fa-times"></i> Máxmo de 50 caracteres.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label for="district">Bairro</label>
+                                            <input type="input" formControlName="district" class="form-control" autocomplete="off" maxlength="50" placeholder="Bairro"     
+                                            [ngClass]="{ 'is-invalid': submitted && f.district.errors }" />
+                                            <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                                                <div *ngIf="f.district.errors.required"><i class="fas fa-times"></i> Campo é obrigatório</div>
+                                                <div *ngIf="f.district.errors.maxlength"><i class="fas fa-times"></i> Máxmo de 50 caracteres.</div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>    
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button [disabled]="loading" class="btn btn-success">
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    <i *ngIf="isAddMode" class="fas fa-save"></i> <span *ngIf="isAddMode" class="btn-icon-form">Salvar</span>
+                                    <i *ngIf="!isAddMode" class="fas fa-edit"></i> <span *ngIf="!isAddMode" class="btn-icon-form">Alterar</span>
+                                </button>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-undo-alt"></i> <span class="btn-icon-form" href="javascript:void(0)" (click)="backClicked()">Voltar</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
