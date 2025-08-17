@@ -1,0 +1,9 @@
+/*menu horizontal*/
+/*cor das opçoes do menu horizontal*/
+.navbar-light .navbar-nav .nav-link{
+    color: #B2B2B1 !important;
+}
+
+.item-sair{
+  cursor: pointer;
+}
