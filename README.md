@@ -19,3 +19,9 @@ npm install
 ➡️ Acesse em: `http://server_domain_or_IP:4200`
 
 ---
+
+### Credenciais
+```bash
+Login: mateus.guizelini@hotmail.com
+Senha: 123456
+```
